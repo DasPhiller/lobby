@@ -1,8 +1,10 @@
 package de.philgamer.lobby.gui
 
 import de.philgamer.lobby.utils.*
-import net.axay.kspigot.extensions.bukkit.sendToServer
 import net.axay.kspigot.gui.*
+import org.bukkit.Location
+import org.bukkit.Sound
+import org.bukkit.entity.Player
 
 val gameModeGui: GUI<ForInventoryFiveByNine> = kSpigotGUI(GUIType.FIVE_BY_NINE) {
     title = "§9Spielmodi"
@@ -15,26 +17,21 @@ val gameModeGui: GUI<ForInventoryFiveByNine> = kSpigotGUI(GUIType.FIVE_BY_NINE) 
         placeholder(Slots.All, placeHolderItem)
         button(Slots.RowThreeSlotFive, spawnItem) {
             it.player.teleport(lobbySpawn)
-            it.player.sendMessage("$prefix Du wurdest zum Spawn teleportiert")
+            teleportPlayerToGameMode(it.player, lobbySpawn, "Spawn")
         }
         button(Slots.RowThreeSlotThree, challengeItem) {
-            if (it.bukkitEvent.isLeftClick) {
-                it.player.teleport(challenges)
-
-            } else {
-                it.guiInstance.gotoPage(-1)
-            }
+            it.player.teleport(challenges)
+            teleportPlayerToGameMode(it.player, challenges, "Challenges")
+        }
+        button(Slots.RowThreeSlotSeven, skyWarsItem) {
+            it.player.teleport(skyWars)
+            teleportPlayerToGameMode(it.player, skyWars, "Skywars")
         }
     }
-    page(-1) {
-        this.transitionFrom = PageChangeEffect.SLIDE_HORIZONTALLY
-        this.transitionTo = PageChangeEffect.SLIDE_HORIZONTALLY
+}
 
-        placeholder(Slots.All, placeHolderItem)
-
-        button(Slots.RowFiveSlotOne, challengeServerItem) {
-            it.player.sendToServer("challenge-1")
-        }
-
-    }
+fun teleportPlayerToGameMode(player: Player, gamemode: Location, name: String) {
+    player.teleport(gamemode)
+    player.sendMessage("$prefix Du wurdest zu $name teleportiert")
+    player.playSound(player.location, Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 1F)
 }

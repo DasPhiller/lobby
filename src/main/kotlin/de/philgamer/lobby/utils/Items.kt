@@ -38,3 +38,9 @@ val challengeServerItem = itemStack(Material.DRAGON_HEAD) {
         name = "§9Challenge-1"
     }
 }
+
+val skyWarsItem = itemStack(Material.GRASS_BLOCK) {
+    meta {
+        name = "§9Skywars"
+    }
+}
