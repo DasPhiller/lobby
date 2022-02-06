@@ -16,15 +16,12 @@ val gameModeGui: GUI<ForInventoryFiveByNine> = kSpigotGUI(GUIType.FIVE_BY_NINE) 
 
         placeholder(Slots.All, placeHolderItem)
         button(Slots.RowThreeSlotFive, spawnItem) {
-            it.player.teleport(lobbySpawn)
             teleportPlayerToGameMode(it.player, lobbySpawn, "Spawn")
         }
         button(Slots.RowThreeSlotThree, challengeItem) {
-            it.player.teleport(challenges)
             teleportPlayerToGameMode(it.player, challenges, "Challenges")
         }
         button(Slots.RowThreeSlotSeven, skyWarsItem) {
-            it.player.teleport(skyWars)
             teleportPlayerToGameMode(it.player, skyWars, "Skywars")
         }
     }
