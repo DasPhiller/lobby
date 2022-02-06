@@ -5,7 +5,7 @@ plugins {
     id("io.papermc.paperweight.userdev") version "1.3.4-SNAPSHOT"
 }
 
-group = "org.example"
+group = "de.philgamer"
 version = "1.0.0"
 
 repositories {
